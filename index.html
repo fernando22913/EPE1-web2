@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistente de Envío Nacional</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Asistente de Envío Nacional</h1>
+    <p>Prepara tu envío de forma rápida y sencilla</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#informacion-adicional">Información Adicional</a></li>
+      <li><a href="#formulario">Formulario de Envío</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="servicios">
+      <h2>Servicios de Envío</h2>
+      <p>Selecciona el servicio que mejor se adapte a tus necesidades:</p>
+
+      <article class="service-card" data-service="basico">
+        <h3>Básico</h3>
+        <p>Servicio económico ideal para envíos que no tienen prisa. Perfecto para paquetes que pueden esperar unos días.</p>
+        <p><strong>Tiempo de entrega:</strong> 3 a 5 días hábiles.</p>
+      </article>
+
+      <article class="service-card" data-service="estandar">
+        <h3>Estándar</h3>
+        <p>Servicio con equilibrio entre costo y velocidad. Recibe tu envío al día hábil siguiente en horario de tarde.</p>
+        <p><strong>Tiempo de entrega:</strong> Al día hábil siguiente en horario PM.</p>
+      </article>
+
+      <article class="service-card" data-service="prioritario">
+        <h3>Prioritario</h3>
+        <p>Servicio rápido para envíos urgentes. Tu paquete llega antes del mediodía del día hábil siguiente.</p>
+        <p><strong>Tiempo de entrega:</strong> Al día hábil siguiente antes de las 13:00.</p>
+        <p><em>Sujeto a cobertura y condiciones.</em></p>
+      </article>
+    </section>
+
+    <section id="informacion-adicional">
+      <h2>Información Adicional</h2>
+      <button id="toggle-info" type="button">Mostrar información adicional</button>
+      <div id="info-content" class="info-hidden">
+        <p>Antes de preparar tu envío, considera los siguientes consejos:</p>
+        <ul>
+          <li>Verifica que la dirección de origen y destino estén completas y correctas.</li>
+          <li>Asegura bien el contenido del paquete para evitar daños durante el transporte.</li>
+          <li>Revisa las dimensiones y el peso reales de tu envío.</li>
+          <li>Algunas zonas pueden tener restricciones de cobertura según el servicio seleccionado.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="formulario">
+      <h2>Preparar Envío</h2>
+      <form id="shipping-form" novalidate>
+        <fieldset>
+          <legend>Datos del envío</legend>
+
+          <div class="form-group">
+            <label for="origen">Origen</label>
+            <input type="text" id="origen" name="origen" required placeholder="Ciudad de origen">
+          </div>
+
+          <div class="form-group">
+            <label for="destino">Destino</label>
+            <input type="text" id="destino" name="destino" required placeholder="Ciudad de destino">
+          </div>
+
+          <div class="form-group">
+            <label for="tipo-envio">Tipo de envío</label>
+            <select id="tipo-envio" name="tipo-envio" required>
+              <option value="" disabled selected>Selecciona un tipo</option>
+              <option value="basico">Básico</option>
+              <option value="estandar">Estándar</option>
+              <option value="prioritario">Prioritario</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" id="peso" name="peso" min="0.1" step="0.1" required placeholder="Ej: 2.5">
+          </div>
+
+          <div class="form-group">
+            <label for="largo">Largo (cm)</label>
+            <input type="number" id="largo" name="largo" min="0.1" step="0.1" required placeholder="Ej: 30">
+          </div>
+
+          <div class="form-group">
+            <label for="ancho">Ancho (cm)</label>
+            <input type="number" id="ancho" name="ancho" min="0.1" step="0.1" required placeholder="Ej: 20">
+          </div>
+
+          <div class="form-group">
+            <label for="alto">Alto (cm)</label>
+            <input type="number" id="alto" name="alto" min="0.1" step="0.1" required placeholder="Ej: 15">
+          </div>
+
+          <div class="form-group">
+            <label for="urgencia">Nivel de urgencia</label>
+            <select id="urgencia" name="urgencia" required>
+              <option value="" disabled selected>Selecciona urgencia</option>
+              <option value="baja">Baja</option>
+              <option value="media">Media</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+          </div>
+
+          <button type="submit">Calcular envío</button>
+          <button type="reset" id="reset-btn">Limpiar formulario</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section id="resultado">
+      <h2>Resultado</h2>
+      <div id="result-content">
+        <p>Completa el formulario para ver la recomendación de envío.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Asistente de Envío Nacional — Prototipo académico</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
