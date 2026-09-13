@@ -11,11 +11,7 @@ const inputOrigen = document.getElementById('origen');
 const inputDestino = document.getElementById('destino');
 const selectTipoEnvio = document.getElementById('tipo-envio');
 const inputPeso = document.getElementById('peso');
-const inputLargo = document.getElementById('largo');
-const inputAncho = document.getElementById('ancho');
-const inputAlto = document.getElementById('alto');
 const selectUrgencia = document.getElementById('urgencia');
-const inputEmail = document.getElementById('email');
 
 serviceCards.forEach(card => {
   card.addEventListener('click', function() {
@@ -36,4 +32,50 @@ btnToggleInfo.addEventListener('click', () => {
   } else {
     btnToggleInfo.textContent = 'Mostrar información adicional';
   }
+});
+
+formEnvio.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  if (!formEnvio.checkValidity()) {
+    formEnvio.reportValidity();
+    return;
+  }
+
+  const valOrigen = inputOrigen.value;
+  const valDestino = inputDestino.value;
+  const valPeso = inputPeso.value;
+  const valTipoEnvio = selectTipoEnvio.options[selectTipoEnvio.selectedIndex].text;
+  const valUrgencia = selectUrgencia.value;
+
+  let servicioSugerido = "";
+  if (valUrgencia === "baja") {
+    servicioSugerido = "Básico";
+  } else if (valUrgencia === "media") {
+    servicioSugerido = "Estándar";
+  } else if (valUrgencia === "alta") {
+    servicioSugerido = "Prioritario";
+  }
+
+  panelResultado.innerHTML = `
+    <h3 class="resumen-titulo">Resumen de tu encomienda</h3>
+    <ul class="resumen-lista">
+      <li><strong>Origen:</strong> ${valOrigen}</li>
+      <li><strong>Destino:</strong> ${valDestino}</li>
+      <li><strong>Tipo de envío elegido:</strong> ${valTipoEnvio}</li>
+      <li><strong>Peso declarado:</strong> ${valPeso} kg</li>
+    </ul>
+    <p class="resumen-recomendacion">
+      Recomendación del sistema: Te sugerimos el servicio <span class="resumen-destacado">${servicioSugerido}</span>.
+    </p>
+  `;
+});
+
+btnLimpiar.addEventListener('click', function() {
+  panelResultado.innerHTML = '<p>Completa el formulario para ver la recomendación de envío.</p>';
+  
+  serviceCards.forEach(card => card.classList.remove('is-selected'));
+  
+  infoContent.classList.remove('info-visible');
+  btnToggleInfo.textContent = 'Mostrar información adicional';
 });
