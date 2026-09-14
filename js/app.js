@@ -76,6 +76,10 @@ btnLimpiar.addEventListener('click', function() {
   
   serviceCards.forEach(card => card.classList.remove('is-selected'));
   
+  formEnvio.querySelectorAll('.is-valid, .is-error').forEach(el => {
+    el.classList.remove('is-valid', 'is-error');
+  });
+
   infoContent.classList.remove('info-visible');
   btnToggleInfo.textContent = 'Mostrar información adicional';
 });
